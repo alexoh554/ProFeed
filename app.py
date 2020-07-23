@@ -17,9 +17,21 @@ cursor = conn.cursor()
 @app.route('/')
 @login_required
 def index():
-    # home page
+    userID = session['id']
+    
+    # Get settings
+    settings = cursor.execute('SELECT nhl, nba, nfl, mlb FROM settings WHERE id = :id',
+                            id=userID)
 
-    #display news feed chosen by user
+    # Store each individual setting in dict
+    sports = {
+        'nhl' = settings[0]['nhl']
+        'nba' = settings[0]['nba']
+        'nfl' = settings[0]['nfl']
+        'mlb' = settings[0]['mlb']
+    }
+
+    return render_template('index.html', sports=sports)
 
 @app.route('/signup')
 def signup():
