@@ -56,7 +56,7 @@ def signup():
         tmp = cursor.execute('SELECT * FROM users WHERE username = :username',
                             username=newUser)
         session['id'] = tmp[0]['id']
-        
+
         return redirect('/')
     else:
         return render_template('signup.html')
@@ -93,9 +93,10 @@ def login():
     else:
         return render_template('login.html')
 
-@app.route('/logout', methods=['GET', 'POST'])
+@app.route('/logout')
 def logout():
-
+    session.clear()
+    return redirect('/')
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
