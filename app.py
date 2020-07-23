@@ -19,4 +19,14 @@ def index():
     # home page
 
     #display news feed chosen by user
-    return True
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
