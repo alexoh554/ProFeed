@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+    <form action="/signup" method="post">
+        <div>
+            <input autocomplete="off" autofocus name="username" placeholder="Username" type="text">
+        </div>
+        <div>
+            <input name="password" placeholder="Password" type="password">
+        </div>
+        <div>
+            <input name='confirmation' placeholder='Confirm Password' type='password'>
+        </div>
+        <button type="submit">Sign up</button>
+    </form>
+
+    <!--USERNAME MUST BE 4-12 PASSWORD 6-16-->
+
+{% endblock %}

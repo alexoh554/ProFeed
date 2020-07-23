@@ -23,7 +23,43 @@ def index():
 
 @app.route('/signup')
 def signup():
+    if request.method == 'POST':
+        # Check for correct input
+        newUser = request.form.get('username')
+        newPassword = request.form.get('password')
 
+        if len(newUser) < 4 or len(newUser) > 12:
+            session['error'] = 'Username must be between 4 - 16 characters'
+            return redirect('/error')
+        if len(newPassword) < 6 or len(newPassword) > 16:
+            session['error'] = 'Password must be between 6 - 16 Characters'
+            return redirect('/error')
+        # Check if password matches confirm
+        if newPassword != request.form.get('confirmation'):
+            session['error'] = 'Passwords do not match'
+            return redirect('/error')
+
+        # Store all taken usernames
+        takenUsers = []
+        takenUsers = cursor.execute('SELECT username FROM users')
+
+        # Compare each username to make sure no duplicates
+        if newUser in takenUsers:
+            session['error'] = 'Username already taken'
+            return redirect('/error')
+
+        # Insert new username and hash into db
+        cursor.execute('INSERT INTO users (username, hash) VALUES (:username, :password)',
+                        username=newUser, password=generate_password_hash(newPassword))
+        
+        # Get user ID and store in session
+        tmp = cursor.execute('SELECT * FROM users WHERE username = :username',
+                            username=newUser)
+        session['id'] = tmp[0]['id']
+        
+        return redirect('/')
+    else:
+        return render_template('signup.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
