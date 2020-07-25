@@ -71,8 +71,8 @@ def login():
             rows = cursor.execute('SELECT * FROM users WHERE username = ?',
                                 (username,))
             conn.commit()
+            rows = rows.fetchall()
         
-        rows = rows.fetchall()
         # Check for valid username/password
         if not rows or not check_password_hash(rows[0]['hash'], password):
             session['error'] = 'Invalid username and/or password'
@@ -109,16 +109,20 @@ def signup():
             return redirect('/error')
 
         # Store all taken usernames
-        takenUsers = []
         with sqlite3.connect('database.db') as conn:
             cursor = conn.cursor()
-            takenUsers = cursor.execute('SELECT username FROM users')
+            taken = cursor.execute('SELECT username FROM users')
             conn.commit()
-
+            takenUsers = taken.fetchall()
+            
+        # DEBUGGING
+        print(takenUsers)
+        print(newUser)
         # Compare each username to make sure no duplicates
-        if newUser in takenUsers:
-            session['error'] = 'Username already taken'
-            return redirect('/error')
+        for item in takenUsers:
+            if item[0] == newUser:
+                session['error'] = 'Username already taken'
+                return redirect('/error')
 
         # Insert new username and hash into db
         with sqlite3.connect('database.db') as conn:
