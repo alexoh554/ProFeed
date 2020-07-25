@@ -155,29 +155,31 @@ def settings():
                 cursor.execute('UPDATE settings SET nhl = 1 WHERE id = ?', (id,))
 
             if newNBA == 'off':
-                cursor.execute('UDPATE settings SET nba = 0 WHERE id = ?', (id,))
+                cursor.execute('UPDATE settings SET nba = 0 WHERE id = ?', (id,))
             else:
                 cursor.execute('UPDATE settings SET nba = 1 WHERE id = ?', (id,))
 
             if newNFL == 'off':
-                cursor.execute('UDPATE settings SET nfl = 0 WHERE id = ?', (id,))
+                cursor.execute('UPDATE settings SET nfl = 0 WHERE id = ?', (id,))
             else:
                 cursor.execute('UPDATE settings SET nfl = 1 WHERE id = ?', (id,))
 
             if newMLB == 'off':
-                cursor.execute('UDPATE settings SET mlb = 0 WHERE id = ?', (id,))
+                cursor.execute('UPDATE settings SET mlb = 0 WHERE id = ?', (id,))
             else:
                 cursor.execute('UPDATE settings SET mlb = 1 WHERE id = ?', (id,))
 
             conn.commit()
 
-        return render_template('/')
+        return redirect('/')
     else:
         # Check current settings
         with sqlite3.connect('database.db') as conn:
+            conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
-            currentSettings = cursor.execute('SELECT nhl, nba, nfl, mlb FROM settings WHERE id = ?',
+            temp = cursor.execute('SELECT nhl, nba, nfl, mlb FROM settings WHERE id = ?',
                                             (id,))
+            currentSettings = temp.fetchall()
             conn.commit()
         # Render settings with previous settings
         nhl = currentSettings[0]['nhl']
