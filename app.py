@@ -73,10 +73,12 @@ def login():
             conn.commit()
             rows = rows.fetchall()
         
+        #DEBUGGING
+        print(rows)
         # Check for valid username/password
         if not rows or not check_password_hash(rows[0]['hash'], password):
             session['error'] = 'Invalid username and/or password'
-            return redirect('error.html')
+            return redirect('/error')
 
         # Store user ID in session
         session['id'] = rows[0]['id']
@@ -114,10 +116,7 @@ def signup():
             taken = cursor.execute('SELECT username FROM users')
             conn.commit()
             takenUsers = taken.fetchall()
-            
-        # DEBUGGING
-        print(takenUsers)
-        print(newUser)
+        
         # Compare each username to make sure no duplicates
         for item in takenUsers:
             if item[0] == newUser:
