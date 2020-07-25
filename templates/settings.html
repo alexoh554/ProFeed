@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+    <form action='/settings' method='post'>
+        <select name='nhl'>
+            <option value='off' {% if nhl == 0 %} selected {% endif %}>Off</option>
+            <option value='on' {% if nhl == 1 %} selected {% endif %}>On</option>
+        </select>
+
+        <select name='nba'>
+            <option value='off' {% if nba == 0 %} selected {% endif %}>Off</option>
+            <option value='on' {% if nba == 1 %} selected {% endif %}>On</option>
+        </select>
+
+        <select name='nfl'>
+            <option value='off' {% if nfl == 0 %} selected {% endif %}>Off</option>
+            <option value='on' {% if nfl == 1 %} selected {% endif %}>On</option>
+        </select>
+
+        <select name='mlb'>
+            <option value='off' {% if mlb == 0 %} selected {% endif %}>Off</option>
+            <option value='on' {% if mlb == 1 %} selected {% endif %}>On</option>
+        </select>
+        <button type='submit'>Save</button>
+    </form>
+
+{% endblock %}
