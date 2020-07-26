@@ -25,11 +25,16 @@
         height: 40px;
         width: 250px;
     }
+    #log {
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;;
+        color: black;
+    }
     .laser {
-        width: 5px;
+        width: 8px;
         position: absolute;
-        transform: translate(-100%, -100%);
-        bottom: 0px;
+        //transform: translate(-100%, -100%);
+        bottom: 0px; 
     }
 {% endblock %}
 
@@ -44,11 +49,20 @@
         <button style='position: relative; top: 60px; height: 30px; width: 90px; font-size: 16px;' type="submit">Log In</button>
     </form>
 
-    <div style='position: absolute; display: inline-block; left: 50%; top: 65%; transform: translate(-50%, -50%);'>
+    <div style='position: absolute; top: 28%; transform: translate(-50%, -50%); left: 50%;'>
+        <h1 id='log'>Login:</h1>
+    </div>
+
+    <div style='position: absolute; display: inline-block; left: 50%; top: 69%; transform: translate(-50%, -50%);'>
         <a href='/signup'>Don't have an account? Sign up here.</a>
     </div>
 
-    <div class='laser' style='color: red; left: 10%; height: 200px;' ></div>
-    <div class='laser' style='color: green; left: 20%; height: 150px;' ></div>
+    <div class='laser' style='background-color: turquoise; left: 5%; height: 400px;' ></div>
+    <div class='laser' style='background-color: red; left: 15%; height: 300px;' ></div>
+    <div class='laser' style='background-color: purple; left: 25%; height: 350px;' ></div>
+
+    <div class='laser' style='background-color: orange; right: 5%; height: 400px;' ></div>
+    <div class='laser' style='background-color: blue; right: 15%; height: 300px;' ></div>
+    <div class='laser' style='background-color: green; right: 25%; height: 350px;' ></div>
 
 {% endblock %}
