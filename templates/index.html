@@ -6,6 +6,18 @@
 
 {% block body %}
     <a href='/settings'>Settings</a>
-    
     <a href='/logout'>Log out</a>
+
+    {% if allOff == True %}
+        <div>Welcome to SportsFeed. Head to settings to select your favourite leagues!</div>
+    {% else %}
+        {% for row in feed %}
+            <div>
+                <h1>{{ row.title }}</h1>
+                <p>{{ row.description }}</p>
+                <a href={{ row.link }}>Read more</a>
+                <p>{{ row.displayDate }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

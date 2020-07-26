@@ -3,8 +3,9 @@ from flask_session import Session
 import sqlite3 
 from werkzeug.security import check_password_hash, generate_password_hash
 from tempfile import mkdtemp
+import feedparser
 
-from helpers import login_required
+from helpers import login_required, newsParse
 
 app = Flask(__name__)
 
@@ -30,15 +31,14 @@ cursor = conn.cursor()
 @login_required
 def index():
     userID = session['id']
-    
     # Get settings
     with sqlite3.connect('database.db') as conn:
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
         settings = cursor.execute('SELECT nhl, nba, nfl, mlb FROM settings WHERE id = ?', (userID,))
         conn.commit()
-    
     settings = settings.fetchall()
+
     # Store each individual setting in dict
     sports = {
         'nhl': settings[0]['nhl'],
@@ -46,7 +46,26 @@ def index():
         'nfl': settings[0]['nfl'],
         'mlb': settings[0]['mlb']
     }
-    return render_template('index.html', sports=sports)
+    allOff = True
+    feed = []
+    if sports['nhl'] == 1:
+        feed.extend(newsParse('nhl'))
+        allOff = False
+    if sports['nba'] == 1:
+        feed.extend(newsParse('nba'))
+        allOff = False
+    if sports['nfl'] == 1:
+        feed.extend(newsParse('nfl'))
+        allOff = False
+    if sports['mlb'] == 1:
+        feed.extend(newsParse('mlb'))
+        allOff = False
+
+    feed = sorted(feed, key=lambda k: k['date'], reverse=True)
+
+    print(feed)
+    
+    return render_template('index.html', feed=feed)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
