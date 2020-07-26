@@ -4,20 +4,72 @@
     Register
 {% endblock %}
 
+{% block style %}
+    form {
+        position: absolute; 
+        display: inline-block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    input {
+        padding: 2px;
+        border-width: 1px;
+        border-style: solid;
+        height: 100%;
+        width: 100%;
+        font-size: 24px;
+    }
+    .boxput {
+        height: 40px;
+        width: 250px;
+    }
+    .laser {
+        width: 8px;
+        position: absolute;
+        bottom: 0px; 
+    }
+    h2 {
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;;
+        color: black;
+        font-size: 18px;
+    }
+{% endblock %}
+
 {% block body %}
     <form action="/signup" method="post">
-        <div>
+        <div class='boxput'>
             <input autocomplete="off" autofocus name="username" placeholder="Username" type="text">
         </div>
-        <div>
-            <input name="password" placeholder="Password" type="password">
+        <div class='boxput'>
+            <input style='position: relative; top: 30px;' name="password" placeholder="Password" type="password">
         </div>
-        <div>
-            <input name='confirmation' placeholder='Confirm Password' type='password'>
+        <div class='boxput'>
+            <input style='position: relative; top: 60px;' name='confirmation' placeholder='Confirm Password' type='password'>
         </div>
-        <button type="submit">Sign up</button>
+        <button style='position: relative; top: 90px; height: 30px; width: 90px; font-size: 16px;' type="submit">Sign up</button>
     </form>
 
-    <!--USERNAME MUST BE 4-12 PASSWORD 6-16-->
+    <div style='position: absolute; transform: translate(-50%, -50%); left: 50%; top: 25%;'>
+        <h1 style='text-align: center; font-family: "Courier New", Courier, monospace; color: black; font-size: 24px;'>
+            Create an Account:
+        </h1>
+        <h2>
+            Username must be unique and between 4-12 characters.
+        </h2>
+        <h2>
+            Password must be between 6-16 characters.
+        </h2>
+    </div>
+
+    <div class='laser' style='background-color: turquoise; left: 5%; height: 400px;' ></div>
+    <div class='laser' style='background-color: red; left: 15%; height: 300px;' ></div>
+    <div class='laser' style='background-color: purple; left: 25%; height: 350px;' ></div>
+
+    <div class='laser' style='background-color: orange; right: 5%; height: 400px;' ></div>
+    <div class='laser' style='background-color: blue; right: 15%; height: 300px;' ></div>
+    <div class='laser' style='background-color: green; right: 25%; height: 350px;' ></div>
 
 {% endblock %}
