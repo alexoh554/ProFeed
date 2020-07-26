@@ -2,6 +2,8 @@ from functools import wraps
 from flask import Flask, redirect, render_template, request, url_for, session
 from flask_session import Session
 import feedparser
+import requests
+from bs4 import BeautifulSoup
 
 def login_required(f):
     @wraps(f)
@@ -12,18 +14,38 @@ def login_required(f):
     return decorated_function
 
 def newsParse(league):
-    rss_url = 'https://www.espn.com/espn/rss/' + league + '/news'
-    parser = feedparser.parse(rss_url)
+    url = 'https://www.espn.com/espn/rss/' + league + '/news'
+
+    def seperate_description_and_image(s):
+        if '\n' in s:
+            return s.rsplit('\n', 1)
+        else:
+            return [s, ""]
+
+    # Need access to feed before parsing
+    # parser = feedparser.parse(url)
+    response = requests.get(url)
+    # error check response.status_code here...
+
+    # join sub-element <description> and unknown sub-element <image> 
+    # in RSS 2.0 <item> and seperate with \n
+    raw = response.text
+    raw = raw.replace("</description><image>", "\n")
+    raw = raw.replace(".jpg]]></image>", ".jpg]]>\n</description>")
+    
+    # now parse
+    parser = feedparser.parse(raw)
 
     newsInfo = []
-
     for entry in parser.entries:
         newEntry = {
             'title': entry.title,
-            'description': entry.description,
+            'description': seperate_description_and_image(entry.description)[0],
+            'image': seperate_description_and_image(entry.description)[1],
             'link': entry.link,
             'date': entry.published_parsed,
             'displayDate': entry.published
         }
         newsInfo.append(newEntry)
+
     return newsInfo

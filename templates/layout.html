@@ -7,12 +7,24 @@
         <title>{% block title %}{% endblock %}</title>
         
         <style>{% block style %}{% endblock %}</style>
+        <style>
+            #sportsfeed {
+                text-align: center;
+                font-family: "Courier New", Courier, monospace;;
+                color: red;
+                text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+            }
+        </style>
     </head>
     <body>
         {% block body %}
         {% endblock %}
-        <div style='position: relative;'>
-            <a style='position: absoulte; bottom: 0; right: 0;' href='https://github.com/alexoh554/sportsfeed' target="_blank" rel="noopener noreferrer"><img src='/static/github.png' alt='View source code via github'></a>
+        <div style='position: absolute; left: 0px; right: 0px; top: 0px; background: rgb(49, 128, 255);'>
+            <h1 id='sportsfeed'>SportsFeed</h1>
+        </div>
+
+        <div style='position: absolute; display: inline-block; top: 0px; left: 0px; width: 79px; height: 79px;'>
+            <a href='https://github.com/alexoh554/sportsfeed' target="_blank" rel="noopener noreferrer"><img style='max-width: 100%; border-radius: 100%; max-height: 100%; margin: auto; display: block;' src='/static/github.png' alt='View source code via github'></a>
         </div>
     </body>
 </html>

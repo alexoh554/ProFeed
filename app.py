@@ -4,6 +4,7 @@ import sqlite3
 from werkzeug.security import check_password_hash, generate_password_hash
 from tempfile import mkdtemp
 import feedparser
+import requests
 
 from helpers import login_required, newsParse
 
@@ -62,8 +63,6 @@ def index():
         allOff = False
 
     feed = sorted(feed, key=lambda k: k['date'], reverse=True)
-
-    print(feed)
     
     return render_template('index.html', feed=feed)
 
@@ -75,10 +74,10 @@ def login():
         # Check if user input username/password
         if not request.form.get('username'):
             session['error'] = 'Must input a username'
-            return redirect('error.html')
+            return redirect('/error')
         if not request.form.get('password'):
             session['error'] = 'Must input a password'
-            return redirect('error.html')
+            return redirect('/error')
 
         username = request.form.get('username')
         password = request.form.get('password')

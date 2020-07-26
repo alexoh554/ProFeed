@@ -4,18 +4,51 @@
     Login
 {% endblock %}
 
+{% block style %}
+    form {
+        position: absolute; 
+        display: inline-block;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    input {
+        padding: 2px;
+        border-width: 1px;
+        border-style: solid;
+        height: 100%;
+        width: 100%;
+        font-size: 24px;
+    }
+    .boxput {
+        height: 40px;
+        width: 250px;
+    }
+    .laser {
+        width: 5px;
+        position: absolute;
+        transform: translate(-100%, -100%);
+        bottom: 0px;
+    }
+{% endblock %}
+
 {% block body %}
     <form action="/login" method="post">
-        <div>
+        <div class='boxput'>
             <input autocomplete="off" autofocus name="username" placeholder="Username" type="text">
         </div>
-        <div>
-            <input name="password" placeholder="Password" type="password">
+        <div class='boxput'>
+            <input style='position: relative; top: 30px;' name="password" placeholder="Password" type="password">
         </div>
-        <button type="submit">Log In</button>
+        <button style='position: relative; top: 60px; height: 30px; width: 90px; font-size: 16px;' type="submit">Log In</button>
     </form>
 
-    <div>
+    <div style='position: absolute; display: inline-block; left: 50%; top: 65%; transform: translate(-50%, -50%);'>
         <a href='/signup'>Don't have an account? Sign up here.</a>
     </div>
+
+    <div class='laser' style='color: red; left: 10%; height: 200px;' ></div>
+    <div class='laser' style='color: green; left: 20%; height: 150px;' ></div>
+
 {% endblock %}
