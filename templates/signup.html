@@ -8,7 +8,7 @@
     form {
         position: absolute; 
         display: inline-block;
-        top: 50%;
+        top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -25,20 +25,35 @@
         height: 40px;
         width: 250px;
     }
-    .laser {
-        width: 8px;
-        position: absolute;
-        bottom: 0px; 
-    }
     h2 {
         text-align: center;
         font-family: "Courier New", Courier, monospace;;
         color: black;
         font-size: 18px;
     }
+    body {
+        background-color: black;
+        background-image: url(/static/stadium.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-blend-mode: luminosity;
+    }
+    #box {
+        background-color: white;
+        position: absolute;
+        top: 51%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 430px;
+        border-radius: 10px;
+    }   
 {% endblock %}
 
 {% block body %}
+    <div id='box'></div>
+
     <form action="/signup" method="post">
         <div class='boxput'>
             <input autocomplete="off" autofocus name="username" placeholder="Username" type="text">
@@ -52,7 +67,7 @@
         <button style='position: relative; top: 90px; height: 30px; width: 90px; font-size: 16px;' type="submit">Sign up</button>
     </form>
 
-    <div style='position: absolute; transform: translate(-50%, -50%); left: 50%; top: 25%;'>
+    <div style='position: absolute; transform: translate(-50%, -50%); left: 50%; top: 30%;'>
         <h1 style='text-align: center; font-family: "Courier New", Courier, monospace; color: black; font-size: 24px;'>
             Create an Account:
         </h1>
@@ -63,13 +78,5 @@
             Password must be between 6-16 characters.
         </h2>
     </div>
-
-    <div class='laser' style='background-color: turquoise; left: 5%; height: 400px;' ></div>
-    <div class='laser' style='background-color: red; left: 15%; height: 300px;' ></div>
-    <div class='laser' style='background-color: purple; left: 25%; height: 350px;' ></div>
-
-    <div class='laser' style='background-color: orange; right: 5%; height: 400px;' ></div>
-    <div class='laser' style='background-color: blue; right: 15%; height: 300px;' ></div>
-    <div class='laser' style='background-color: green; right: 25%; height: 350px;' ></div>
 
 {% endblock %}

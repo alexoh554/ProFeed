@@ -6,10 +6,12 @@
 
 {% block body %}
     <a href='/settings'>Settings</a>
-    <a href='/logout'>Log out</a>
+    <a style='z-index: 1;' href='/logout'>Log out</a>
 
     {% if allOff == True %}
-        <div>Welcome to SportsFeed. Head to settings to select your favourite leagues!</div>
+        <div>
+            <h1>Welcome to SportsFeed. Head over to settings to select your favourite leagues!</h1>
+        </div>
     {% else %}
         {% for row in feed %}
             <div>

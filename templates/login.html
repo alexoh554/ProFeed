@@ -30,38 +30,47 @@
         font-family: "Courier New", Courier, monospace;;
         color: black;
     }
-    .laser {
-        width: 8px;
-        position: absolute;
-        bottom: 0px; 
+    body {
+        background-color: black;
+        background-image: url(/static/saints.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-blend-mode: luminosity;
     }
+    #box {
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 380px;
+        border-radius: 10px;
+    }   
 {% endblock %}
 
 {% block body %}
-    <form action="/login" method="post">
-        <div class='boxput'>
-            <input autocomplete="off" autofocus name="username" placeholder="Username" type="text">
+    <div id='box'></div>
+
+    <div>
+        <form action="/login" method="post">
+            <div class='boxput'>
+                <input autocomplete="off" autofocus name="username" placeholder="Username" type="text">
+            </div>
+            <div class='boxput'>
+                <input style='position: relative; top: 30px;' name="password" placeholder="Password" type="password">
+            </div>
+            <button style='position: relative; top: 60px; height: 30px; width: 90px; font-size: 16px;' type="submit">Log In</button>
+        </form>
+    
+        <div style='position: absolute; top: 28%; transform: translate(-50%, -50%); left: 50%;'>
+            <h1 id='log'>Login:</h1>
         </div>
-        <div class='boxput'>
-            <input style='position: relative; top: 30px;' name="password" placeholder="Password" type="password">
+    
+        <div style='position: absolute; display: inline-block; left: 50%; bottom: 27%; transform: translate(-50%, -50%);'>
+            <a href='/signup'>Don't have an account? Sign up here.</a>
         </div>
-        <button style='position: relative; top: 60px; height: 30px; width: 90px; font-size: 16px;' type="submit">Log In</button>
-    </form>
-
-    <div style='position: absolute; top: 28%; transform: translate(-50%, -50%); left: 50%;'>
-        <h1 id='log'>Login:</h1>
     </div>
-
-    <div style='position: absolute; display: inline-block; left: 50%; top: 69%; transform: translate(-50%, -50%);'>
-        <a href='/signup'>Don't have an account? Sign up here.</a>
-    </div>
-
-    <div class='laser' style='background-color: turquoise; left: 5%; height: 400px;' ></div>
-    <div class='laser' style='background-color: red; left: 15%; height: 300px;' ></div>
-    <div class='laser' style='background-color: purple; left: 25%; height: 350px;' ></div>
-
-    <div class='laser' style='background-color: orange; right: 5%; height: 400px;' ></div>
-    <div class='laser' style='background-color: blue; right: 15%; height: 300px;' ></div>
-    <div class='laser' style='background-color: green; right: 25%; height: 350px;' ></div>
-
+    
 {% endblock %}
