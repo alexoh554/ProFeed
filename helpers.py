@@ -38,14 +38,17 @@ def newsParse(league):
 
     newsInfo = []
     for entry in parser.entries:
-        newEntry = {
+        try:
+            newEntry = {
             'title': entry.title,
             'description': seperate_description_and_image(entry.description)[0],
             'image': seperate_description_and_image(entry.description)[1],
             'link': entry.link,
             'date': entry.published_parsed,
             'displayDate': entry.published
-        }
-        newsInfo.append(newEntry)
-
+            }
+            newsInfo.append(newEntry)
+        except AttributeError:
+            continue
+    
     return newsInfo

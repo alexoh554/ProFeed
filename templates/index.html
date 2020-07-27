@@ -4,22 +4,90 @@
     Home
 {% endblock %}
 
+{% block style %}
+    #Welcome {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    body {
+        background-color: black;
+        background-image: url(/static/hockey.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-blend-mode: luminosity;
+        background-attachment: fixed;
+    }
+    #wbox {
+        background-color: white;
+        position: absolute;
+        top: 45%;
+        transform: translate(-50%, -50%);;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 700px;
+        height: 100px;
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgb(5, 58, 130);
+    }
+    #settings {
+        color: white;
+        font-size: 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        position: absolute;
+        top: 25px;
+        z-index: 10;
+        right: 150px;
+    }
+    #logout {
+        color: white;
+        font-size: 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        position: absolute;
+        top: 25px;
+        z-index: 10;
+        right: 15px;
+    }
+    #feedbox {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgb(5, 58, 130);
+        text-align: center;
+        position: relative;
+        left: 50%;
+        top: 350px;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 100%;
+    }
+{% endblock %}
+
 {% block body %}
-    <a href='/settings'>Settings</a>
-    <a style='z-index: 1;' href='/logout'>Log out</a>
+    <a class='hoverline' id='settings' href='/settings'>Settings</a>
+    <a class='hoverline' id='logout' href='/logout'>Log out</a>
 
     {% if allOff == True %}
-        <div>
-            <h1>Welcome to SportsFeed. Head over to settings to select your favourite leagues!</h1>
+        <div id='wbox'></div>
+        <div id='Welcome'>
+            <h1 style='text-align: center; font-family: "Courier New", Courier, monospace; font-size: 20px;'>Welcome to SportsFeed. Head over to settings to select your favourite leagues!</h1>
         </div>
     {% else %}
         {% for row in feed %}
-            <div>
-                <h1>{{ row.title }}</h1>
-                <p>{{ row.description }}</p>
+            <div id='feedbox'>
+                <div style='position: relative; width: 450px; margin: 0 auto;'>
+                    <h1>{{ row.title }}</h1>
+                </div>
+
+                <img style='width: 100%; max-width: 450px; max-height: 400px;' src={{ row.image }} alt='Image'>
+
+                <div style='position: relative; width: 450px; margin: 0 auto;'>
+                    <p>{{ row.description }}</p>
+                </div>
+
                 <a href={{ row.link }}>Read more</a>
                 <p>{{ row.displayDate }}</p>
-                <img src={{ row.image }} alt='Image'>
             </div>
         {% endfor %}
     {% endif %}

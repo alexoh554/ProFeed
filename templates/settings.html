@@ -1,34 +1,110 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Home
+    Settings
+{% endblock %}
+
+{% block style %}
+    body {
+        background-color: black;
+        background-image: url(/static/lebron.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-blend-mode: luminosity;
+        background-attachment: fixed;
+    }
+    .sel {
+        position: absolute;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: 0 0 30px rgb(5, 58, 130);
+    }
+    .inputbox {
+        height: 30px;
+        width: 80px;
+        border-radius: 5px;
+        margin: 10px;
+    }
+    .butt {
+        position: absolute;
+        height: 40px;
+        width: 120px;
+        border-radius: 5px;
+        font-size: 20px;
+        font-family: "Courier New", Courier, monospace;
+        cursor: pointer;
+    }
+    #save {
+        top: 78%;
+        right: 35%;
+        background-color: green;
+        color: white;
+    }
+    #cancel {
+        top: 78%;
+        left: 35%;
+    }
+    #settings {
+        color: white;
+        font-size: 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        position: absolute;
+        top: 25px;
+        z-index: 10;
+        right: 150px;
+    }
+    #logout {
+        color: white;
+        font-size: 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        position: absolute;
+        top: 25px;
+        z-index: 10;
+        right: 15px;
+    }
 {% endblock %}
 
 {% block body %}
     <form action='/settings' method='post'>
-        <select name='nhl'>
-            <option value='off' {% if nhl == 0 %} selected {% endif %}>Off</option>
-            <option value='on' {% if nhl == 1 %} selected {% endif %}>On</option>
-        </select>
+        <div class='sel' style='left: 25%; top: 30%;'>
+            <h1 style='display: inline-block; font-size: 20px; margin: 10px;'>NHL</h1>
+            <select class='inputbox' name='nhl'>
+                <option value='off' {% if nhl == 0 %} selected {% endif %}>Off</option>
+                <option value='on' {% if nhl == 1 %} selected {% endif %}>On</option>
+            </select>
+        </div>
 
-        <select name='nba'>
-            <option value='off' {% if nba == 0 %} selected {% endif %}>Off</option>
-            <option value='on' {% if nba == 1 %} selected {% endif %}>On</option>
-        </select>
 
-        <select name='nfl'>
-            <option value='off' {% if nfl == 0 %} selected {% endif %}>Off</option>
-            <option value='on' {% if nfl == 1 %} selected {% endif %}>On</option>
-        </select>
+        <div class='sel' style='right: 25%; top: 30%;'>
+            <h1 style='display: inline-block; font-size: 20px; margin: 10px;'>NBA</h1>
+            <select class='inputbox' name='nba'>
+                <option value='off' {% if nba == 0 %} selected {% endif %}>Off</option>
+                <option value='on' {% if nba == 1 %} selected {% endif %}>On</option>
+            </select>
+        </div>
 
-        <select name='mlb'>
-            <option value='off' {% if mlb == 0 %} selected {% endif %}>Off</option>
-            <option value='on' {% if mlb == 1 %} selected {% endif %}>On</option>
-        </select>
-        <button type='submit'>Save</button>
+        <div class='sel' style='left: 25%; top: 60%;'>
+            <h1 style='display: inline-block; font-size: 20px; margin: 10px;'>NFL</h1>
+            <select class='inputbox' name='nfl'>
+                <option value='off' {% if nfl == 0 %} selected {% endif %}>Off</option>
+                <option value='on' {% if nfl == 1 %} selected {% endif %}>On</option>
+            </select>
+        </div>
+
+        <div class='sel' style='right: 25%; top: 60%;'>
+            <h1 style='display: inline-block; font-size: 20px; margin: 10px;'>MLB</h1>
+            <select class='inputbox' name='mlb'>
+                <option value='off' {% if mlb == 0 %} selected {% endif %}>Off</option>
+                <option value='on' {% if mlb == 1 %} selected {% endif %}>On</option>
+            </select>
+        </div>
+        
+        <button class='butt' id='save' type='submit'>Save</button>
     </form>
 
-    <a href='/'>Back</a>
+    <button onclick="location.href = '/';" class='butt' id='cancel'>Cancel</button>
 
-    <a href='/logout'>Log out</a>
+    <a class='hoverline' id='settings' href='/settings'>Settings</a>
+    <a class='hoverline' id='logout' href='/logout'>Log out</a>
 {% endblock %}

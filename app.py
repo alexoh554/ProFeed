@@ -64,7 +64,7 @@ def index():
 
     feed = sorted(feed, key=lambda k: k['date'], reverse=True)
     
-    return render_template('index.html', feed=feed)
+    return render_template('index.html', feed=feed, allOff=allOff)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -118,7 +118,7 @@ def signup():
         newPassword = request.form.get('password')
 
         if len(newUser) < 4 or len(newUser) > 12:
-            session['error'] = 'Username must be between 4 - 16 characters'
+            session['error'] = 'Username must be between 4 - 12 characters'
             return redirect('/error')
         if len(newPassword) < 6 or len(newPassword) > 16:
             session['error'] = 'Password must be between 6 - 16 Characters'
