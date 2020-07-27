@@ -4,14 +4,46 @@
     Error
 {% endblock %}
 
+{% block style %}
+    body {
+        background-color: black;
+        background-image: url(/static/goalie.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-blend-mode: luminosity;
+        background-attachment: fixed;
+        margin: 0;
+    }
+    #box {
+        background-color: white;
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 140px;
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgb(5, 58, 130);
+    }
+    .error {
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;;
+        color: black;
+    }   
+{% endblock %}
+
 {% block body %}
-    <div>
-        <h1>
+    <div id='box'></div>
+
+    <div style='position: absolute; top: 40%; transform: translate(-50%, -50%); left: 50%;'>
+        <h1 class='error'>
             Error
         </h1>
     </div>
-    <div>
-        <h2>
+
+    <div style='position: absolute; top: 50%; transform: translate(-50%, -50%); left: 50%;'>
+        <h2 class='error'>
             {{ error_message }}
         </h2>
     </div>
