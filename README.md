@@ -16,7 +16,7 @@ ProFeed displays news from professional sports, and users can set preferences fo
 ### Installation
 * In the command line run:
 ```
-git copy https://github.com/alexoh554/ProFeed.git
+git clone https://github.com/alexoh554/ProFeed.git
 ```
 
 * Install modules in requirements.txt:
