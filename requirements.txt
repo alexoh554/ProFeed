@@ -1,0 +1,8 @@
+flask
+flask_session
+werkzeug.security
+tempfile
+feedparser
+requests
+functools
+sqlite3
