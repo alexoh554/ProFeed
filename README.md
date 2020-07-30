@@ -4,6 +4,11 @@ ProFeed is a web application made with the flask module in python. ProFeed is no
 ## Description
 ProFeed displays news from professional sports, and users can set preferences for the leagues they wish to follow. These settings are saved in a SQLite3 database along with the user's account information.
 
+### Screenshots
+![Screenshot](/screenshots/login.png?raw=true)
+![Screenshot](/screenshots/signup.png?raw=true)
+![Screenshot](/screenshots/feed.png?raw=true)
+
 ## Getting started
 ### Requirements
 * [Python](https://www.python.org/)
