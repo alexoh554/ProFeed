@@ -1,5 +1,5 @@
 # ProFeed
-ProFeed is a web application made with the flask module in python. ProFeed is not affiliated with the NHL, NBA, NFL, or MLB in anyway.
+ProFeed is a web application made with the flask module in python. ProFeed is not affiliated with the NHL, NBA, NFL, or MLB in any way.
 
 ## Description
 ProFeed displays news from professional sports, and users can set preferences for the leagues they wish to follow. These settings are saved in a SQLite3 database along with the user's account information.
