@@ -22,18 +22,11 @@ def newsParse(league):
         else:
             return [s, ""]
 
-    # Need access to feed before parsing
-    # parser = feedparser.parse(url)
     response = requests.get(url)
-    # error check response.status_code here...
-
-    # join sub-element <description> and unknown sub-element <image> 
-    # in RSS 2.0 <item> and seperate with \n
     raw = response.text
     raw = raw.replace("</description><image>", "\n")
     raw = raw.replace(".jpg]]></image>", ".jpg]]>\n</description>")
     
-    # now parse
     parser = feedparser.parse(raw)
 
     newsInfo = []
