@@ -3,5 +3,4 @@ flask_session
 Werkzeug
 feedparser
 requests
-sqlite3
 gunicorn
