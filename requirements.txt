@@ -6,3 +6,4 @@ feedparser
 requests
 functools
 sqlite3
+gunicorn
