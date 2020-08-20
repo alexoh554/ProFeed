@@ -1,6 +1,6 @@
 flask
 flask_session
-werkzeug.security
+Werkzeug
 tempfile
 feedparser
 requests
