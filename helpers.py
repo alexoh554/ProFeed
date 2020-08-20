@@ -3,7 +3,6 @@ from flask import Flask, redirect, render_template, request, url_for, session
 from flask_session import Session
 import feedparser
 import requests
-from bs4 import BeautifulSoup
 
 def login_required(f):
     @wraps(f)
