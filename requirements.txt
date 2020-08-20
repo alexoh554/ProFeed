@@ -1,7 +1,6 @@
 flask
 flask_session
 Werkzeug
-tempfile
 feedparser
 requests
 functools
