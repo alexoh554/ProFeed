@@ -10,7 +10,7 @@ ProFeed displays news from professional sports, and users can set preferences fo
 ![Screenshot](/screenshots/feed.png?raw=true)
 
 ## Getting started
-* View the website on heroku: https://alex-profeed.herokuapp.com/ (May or may not be running)
+* View the website on [heroku](https://alex-profeed.herokuapp.com/) (May or may not be running)
 ### Requirements
 * [Python](https://www.python.org/)
 
